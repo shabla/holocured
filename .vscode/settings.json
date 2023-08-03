@@ -1,0 +1,9 @@
+{
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
+  "json.format.enable": true,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "rome.rome",
+  },
+  "[css]": {}
+}
