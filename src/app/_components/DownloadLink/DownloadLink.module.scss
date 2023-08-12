@@ -1,0 +1,19 @@
+.downloadLink {
+  background-color: var(--pink);
+  flex-shrink: 0;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(var(--navbarHeight) * 0.7);
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 0 15px;
+  font-weight: 700;
+
+  &:hover {
+    background-color: white;
+    color: var(--darkBlue);
+  }
+}

@@ -1,0 +1,31 @@
+:root {
+  // Colors
+  --blue: #4abef9;
+  --blueHalfOpacity: #4abef980;
+  --pink: #ff9ec6;
+  --darkBlue: #21546f;
+  --darkBlueHalfOpacity: #21546f80;
+
+  // Sizes
+  --spriteLabelOverflow: 12px;
+  --spriteLabelHeight: 24px;
+  --navbarHeight: 50px;
+
+  // Spacing
+  --spacingContent: 5px;
+}
+
+
+/**
+CSS Module import example
+
+import variables from '@/styles/variables.module.scss'
+
+export default function Page() {
+  return <h1 style={{ color: variables.blue }}>Hello, Next.js!</h1>
+}
+*/
+
+// :export {
+//   blue: $blue;
+// }

@@ -1,0 +1,41 @@
+@import "../styles/variables.module.scss";
+
+html,
+#root,
+body {
+  font-size: 10px;
+  min-height: 100vh;
+  max-width: 100vw;
+  background-color: var(--blue);
+  overflow-x: hidden;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+
+* {
+  box-sizing: border-box;
+  font-family: monospace;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+.highlight {
+  color: #bcff5c;
+  font-weight: bold;
+}
+
+.table-cell-min-content {
+  width: 1%;
+  white-space: nowrap;
+}

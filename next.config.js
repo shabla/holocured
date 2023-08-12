@@ -2,15 +2,18 @@
 const nextConfig = {
   output: 'export',
 
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/build',
-        permanent: true,
-      },
-    ]
+  images: {
+    unoptimized: true,
   },
+
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: '/',
+  //       destination: '/build'
+  //     },
+  //   ]
+  // },
 }
 
 module.exports = nextConfig

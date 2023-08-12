@@ -1,0 +1,25 @@
+a.iconLink {
+  color: white;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--navbarHeight);
+  width: var(--navbarHeight);
+
+  &:hover {
+    background-color: white;
+    color: var(--darkBlue);
+    cursor: pointer;
+
+    & svg {
+      fill: var(--darkBlue);
+    }
+  }
+
+  & svg {
+    height: 24px;
+    width: 24px;
+    fill: white;
+  }
+}
