@@ -6,9 +6,9 @@ import { WeaponsSection } from "@/components/WeaponsSection/WeaponsSection";
 import { Item, WeaponsList } from "@/models";
 import { uniq, without } from "lodash";
 import { useState } from "react";
-import styles from "./WeaponsPicker.module.scss";
+import styles from "./BuildPage.module.scss";
 
-interface WeaponsPickerProps {
+interface BuildPageProps {
 	items: Item[];
 }
 
@@ -16,7 +16,7 @@ const findFirstEmptySlotIndex = (selectedItems: WeaponsList): number => {
 	return selectedItems.findIndex((slot) => slot === undefined);
 };
 
-export function WeaponsPicker({ items }: WeaponsPickerProps) {
+export default function BuildPage({ items }: BuildPageProps) {
 	const [selectedSlot, setSelectedSlot] = useState<number>();
 	const [selectedWeapons, setSelectedWeapons] = useState<WeaponsList>([
 		undefined,
@@ -218,7 +218,7 @@ isSelectedSlotRequired: ${isSelectedSlotRequired}
 	// });
 
 	return (
-		<>
+		<div className={styles.pageContainer}>
 			<WeaponsSection
 				items={items}
 				selectedSlot={selectedSlot}
@@ -257,6 +257,6 @@ isSelectedSlotRequired: ${isSelectedSlotRequired}
 					/>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }

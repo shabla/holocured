@@ -1,17 +1,26 @@
-import styles from "./page.module.scss";
-import { fetchItems } from "@/api/fetchItems";
+import BuildPage from "@/components/BuildPage/BuildPage";
 import { config } from "@/config";
-import { Log } from "@/components/Log";
-import { WeaponsPicker } from "./_components/WeaponsPicker/WeaponsPicker";
+import { Item } from "@/models";
 
-export default async function BuildPage() {
+async function fetchItems(): Promise<Item[]> {
+	const res = await fetch(
+		"http://127.0.0.1:8090/api/collections/items/records?perPage=999",
+	);
+	const data = await res.json();
+	const items: Item[] = data.items;
+
+	items.forEach((item) => {
+		item.spritesheetOffset = config.spritesheets.items.offsets[item.name] as [
+			number,
+			number,
+		];
+	});
+
+	return items;
+}
+
+export default async function Page() {
 	const items = await fetchItems();
 
-	return (
-		<div className={styles.main}>
-			{/* <Log>{[items, config]}</Log> */}
-
-			<WeaponsPicker items={items} />
-		</div>
-	);
+	return <BuildPage items={items} />;
 }

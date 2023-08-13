@@ -5,10 +5,10 @@ import HOLOCURE_LOGO from "@/assets/holocure-logo-sm.png";
 import "normalize.css";
 import "./global.scss";
 import styles from "./layout.module.scss";
-import { App } from "./_components/App/App";
-import { IconLink } from "./_components/IconLink/IconLink";
-import { DownloadLink } from "./_components/DownloadLink/DownloadLink";
 import { config } from "@/config";
+import { App } from "@/components/App/App";
+import { IconLink } from "@/components/IconLink/IconLink";
+import { DownloadLink } from "@/components/DownloadLink/DownloadLink";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,7 +37,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
 							/>
 
 							<section className={styles.navbarLinks}>
-								Build
 								{/* <NavbarLink to="build">Build</NavbarLink>
 								<NavbarLink to="upgrades">Upgrades</NavbarLink> */}
 							</section>

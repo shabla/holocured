@@ -1,7 +1,15 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  output: 'export',
-  trailingSlash: true,
+
+const isProd = process.env.NODE_ENV === "production";
+let basePath = '';
+
+if (isProd) {
+  basePath = "/holocured";
 }
 
-module.exports = nextConfig
+const nextConfig = {
+  output: 'export',
+  basePath: basePath,
+}
+
+module.exports = nextConfig;

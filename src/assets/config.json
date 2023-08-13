@@ -1,12 +1,12 @@
 {
   "navbar": [
     {
-      "href": "https://github.com/shabla/holocure-infos",
+      "href": "https://github.com/shabla/holocured",
       "title": "This website's Github page",
       "icon": "github"
     },
     {
-      "href": "https://www.reddit.com/r/holocure/",
+      "href": "https://www.reddit.com/r/holocure",
       "title": "The game's subreddit",
       "icon": "reddit"
     },
