@@ -3,7 +3,7 @@ import skills from "@/assets/spritesheets/skills.png";
 import upgrades from "@/assets/spritesheets/upgrades.png";
 import idolIcons from "@/assets/spritesheets/idol-icons.png"
 import idolModels from "@/assets/spritesheets/idol-models.png";
-import { StaticImageData } from "next/image";
+import { type StaticImageData } from "next/image";
 import { SpriteType } from "./SpriteType";
 
 export type SpriteSheetConfig = {

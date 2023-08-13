@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Image from "next/image";
 import { Icons } from "@/components";
 import HOLOCURE_LOGO from "@/assets/holocure-logo-sm.png";
 import "normalize.css";
@@ -29,8 +28,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
 				<App>
 					<nav className={styles.navbar}>
 						<div className={styles.contentContainer}>
-							<Image
-								src={HOLOCURE_LOGO}
+							{/* eslint-disable-next-line @next/next/no-img-element */}
+							<img
+								src={HOLOCURE_LOGO.src}
 								alt="HoloCure Logo"
 								height="50"
 								width="119"

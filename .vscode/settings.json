@@ -5,6 +5,6 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "rome.rome",
   },
-  "[css]": {},
-  "json.format.keepLines": true
+  "json.format.keepLines": true,
+  "liveServer.settings.port": 5527
 }
