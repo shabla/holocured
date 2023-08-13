@@ -1,0 +1,50 @@
+.spriteImage {
+  border-radius: 3px;
+}
+
+.spriteContainer {
+  position: relative;
+  flex: 0 0 auto;
+
+  &.withLabel {
+    padding: var(--spriteLabelOverflow);
+    padding-bottom: 0;
+  }
+
+  &.clickable {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &.selected {
+    .spriteImage {
+      outline: 5px solid white;
+    }
+  }
+
+  &.disabled {
+    opacity: 0.3;
+  }
+}
+
+.spriteLabel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  font-size: 11px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  border-radius: 3px;
+  padding: 1px 0;
+  line-height: 10px;
+  height: var(--spriteLabelHeight);
+  pointer-events: none;
+}

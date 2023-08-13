@@ -3,8 +3,13 @@
     "enabled": true,
     "rules": {
       "recommended": true,
+      "a11y": {
+        "useKeyWithClickEvents": "off",
+        "useKeyWithMouseEvents": "off"
+      },
       "style": {
-        "useBlockStatements": "error"
+        "useBlockStatements": "error",
+        "noNonNullAssertion": "warn"
       },
       "suspicious": {
         "noArrayIndexKey": "warn"

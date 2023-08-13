@@ -1,0 +1,23 @@
+.items {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.section {
+  h2 {
+    color: white;
+  }
+}
+
+.basicWeaponsSection {
+  flex: 1 1 30%;
+}
+
+.allCollabsSection {
+  flex: 1 1 45%;
+}
+
+.availableCollabsSection {
+  flex: 1 1 25%;
+}

@@ -1,4 +1,3 @@
-import { Level } from "./Level";
 
 type ItemType = "weapon" | "item" | "collab" | "super"
 
@@ -11,7 +10,7 @@ export interface Item {
   notes?: string;
   requires?: string[];
   // levels: Level[];
-  // spritePos: [number, number];
+  spritesheetOffset: [number, number];
 }
 
 export type WeaponsList = [
@@ -23,11 +22,11 @@ export type WeaponsList = [
 ];
 
 export type WeaponIdsList = [
-  number | undefined,
-  number | undefined,
-  number | undefined,
-  number | undefined,
-  number | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
 ];
 
 export type ItemsList = [

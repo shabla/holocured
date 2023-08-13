@@ -1,4 +1,20 @@
-@import "../styles/variables.module.scss";
+:root {
+  // Colors
+  --blue: #4abef9;
+  --blueHalfOpacity: #4abef980;
+  --pink: #ff9ec6;
+  --darkerPink: #ff8ebc;
+  --darkBlue: #21546f;
+  --darkBlueHalfOpacity: #21546f80;
+
+  // Sizes
+  --spriteLabelOverflow: 12px;
+  --spriteLabelHeight: 24px;
+  --navbarHeight: 50px;
+
+  // Spacing
+  --spacingContent: 5px;
+}
 
 html,
 #root,

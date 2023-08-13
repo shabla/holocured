@@ -1,20 +1,17 @@
 import styles from "./page.module.scss";
-import { Item } from "@/models/Item";
-
-async function listItems(): Promise<Item[]> {
-	const res = await fetch(
-		"http://127.0.0.1:8090/api/collections/items/records?perPage=999",
-		{ cache: "no-store" },
-	);
-	const data = await res.json();
-
-	return data.items;
-}
+import { fetchItems } from "@/api/fetchItems";
+import { config } from "@/config";
+import { WeaponsPicker } from "./_components/WeaponsPicker";
+import { Log } from "@/components/Log";
 
 export default async function BuildPage() {
-	const items = await listItems();
+	const items = await fetchItems();
 
-	console.log("Items:", items.length);
+	return (
+		<div className={styles.main}>
+			<Log>{[items, config]}</Log>
 
-	return <main className={styles.main}>{items?.map((item) => item.name)}</main>;
+			<WeaponsPicker items={items} />
+		</div>
+	);
 }

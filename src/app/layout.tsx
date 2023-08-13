@@ -9,10 +9,7 @@ import styles from "./layout.module.scss";
 import { App } from "./_components/App/App";
 import { IconLink } from "./_components/IconLink/IconLink";
 import { DownloadLink } from "./_components/DownloadLink/DownloadLink";
-import configJson from "@/config.json";
-import { Config } from "@/models/Config";
-
-const config = configJson as Config;
+import { config } from "@/config";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,7 +25,6 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
 	return (
 		<html lang="en">
-			<head />
 			<body className={inter.className}>
 				<App>
 					<nav className={styles.navbar}>

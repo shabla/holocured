@@ -1,0 +1,45 @@
+.clearButton {
+  all: unset;
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  width: 60%;
+  height: 35px;
+  transform: translateY(50%);
+  line-height: 20px;
+  background-color: var(--pink);
+  color: white;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+
+  &:hover {
+    background-color: var(--darkerPink);
+    cursor: pointer;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 12px 10px;
+  position: relative;
+  flex: 1 1 auto;
+  border-bottom: 1px solid #ffffff50;
+
+  &:not(.disabled) {
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+    }
+  }
+
+  &.selected {
+    outline: 3px solid white;
+  }
+}

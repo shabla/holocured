@@ -1,0 +1,50 @@
+.collabContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 165px;
+}
+
+.componentsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.bars {
+  $line-color: rgba(0, 0, 0, 0.4);
+  $line-width: 2px;
+  $top-line-height: 8px;
+  $bottom-lines-height: 6px;
+  $total-height: calc($top-line-height + $line-width + $bottom-lines-height);
+  $image-size: 54px;
+  $distance-from-side: calc(var(--spriteLabelOverflow) + ($image-size / 2) + ($line-width / 2));
+
+  position: relative;
+  width: 100%;
+  height: $total-height;
+
+  &::before {
+    content: '';
+    position: absolute;
+    background-color: $line-color;
+    top: 0;
+    left: 50%;
+    width: $line-width;
+    height: $top-line-height;
+    transform: translateX(-$line-width / 2);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    border: $line-width solid $line-color;
+    border-bottom: 0;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    height: calc((2 * $top-line-height) + ($line-width / 2));
+    top: $top-line-height;
+    left: $distance-from-side;
+    right: $distance-from-side;
+  }
+}
