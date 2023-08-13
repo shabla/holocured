@@ -1,5 +1,12 @@
 {
-  "navbar": [
+  "navbar": {
+    "downloadLink": {
+      "href": "https://store.steampowered.com/app/2420510/HoloCure__Save_the_Fans/",
+      "title": "The game's Steam page",
+      "text": "Download the game!"
+    }
+  },
+  "footer": [
     {
       "href": "https://github.com/shabla/holocured",
       "title": "This website's Github page",
@@ -21,11 +28,6 @@
       "icon": "twitter"
     }
   ],
-  "downloadLink": {
-    "href": "https://store.steampowered.com/app/2420510/HoloCure__Save_the_Fans/",
-    "title": "The game's Steam page",
-    "text": "Download the game!"
-  },
   "spritesheets": {
     "idols": {
       "width": 180,

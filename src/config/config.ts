@@ -3,12 +3,13 @@ import { SpriteType } from "./SpriteType";
 import { NavbarLinkConfig } from "./NavbarLinkConfig";
 import { SpriteSheet, SpriteSheetConfig, spriteSheets } from "./SpriteSheet";
 
-
 type SpriteSheets = Record<SpriteType, SpriteSheet>;
 
 interface RawConfig {
-  navbar: NavbarLinkConfig[];
-  downloadLink: NavbarLinkConfig & { text: string };
+  navbar: {
+    downloadLink: NavbarLinkConfig & { text: string };
+  },
+  footer: NavbarLinkConfig[];
   spritesheets: Record<SpriteType, SpriteSheetConfig>;
 }
 

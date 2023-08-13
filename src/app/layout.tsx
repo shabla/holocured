@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { Icons } from "@/components";
-import HOLOCURE_LOGO from "@/assets/holocure-logo-sm.png";
+
+import { App } from "@/components/App/App";
+import { Footer } from "@/components/Footer/Footer";
+import { Navbar } from "@/components/Navbar/Navbar";
 import "normalize.css";
 import "./global.scss";
 import styles from "./layout.module.scss";
-import { config } from "@/config";
-import { App } from "@/components/App/App";
-import { IconLink } from "@/components/IconLink/IconLink";
-import { DownloadLink } from "@/components/DownloadLink/DownloadLink";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], weight: ["400", "700"] });
 
 export const metadata: Metadata = {
 	title: "Holocured",
@@ -26,37 +24,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
 		<html lang="en">
 			<body className={inter.className}>
 				<App>
-					<nav className={styles.navbar}>
-						<div className={styles.contentContainer}>
-							{/* eslint-disable-next-line @next/next/no-img-element */}
-							<img
-								src={HOLOCURE_LOGO.src}
-								alt="HoloCure Logo"
-								height="50"
-								width="119"
-							/>
-
-							<section className={styles.navbarLinks}>
-								{/* <NavbarLink to="build">Build</NavbarLink>
-								<NavbarLink to="upgrades">Upgrades</NavbarLink> */}
-							</section>
-
-							{config.navbar.map((link) => (
-								<IconLink key={link.href} href={link.href} title={link.title}>
-									{link.icon && Icons[link.icon]}
-								</IconLink>
-							))}
-
-							<DownloadLink
-								href={config.downloadLink.href}
-								title={config.downloadLink.title}
-							>
-								{config.downloadLink.text}
-							</DownloadLink>
-						</div>
-					</nav>
+					<Navbar />
 
 					<main className={styles.pageContent}>{children}</main>
+
+					<Footer />
 				</App>
 			</body>
 		</html>
