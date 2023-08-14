@@ -18,7 +18,7 @@ export const ItemPicker = ({
 	onSelect,
 }: ItemPickerProps) => {
 	return (
-		<div className={styles.container} style={style}>
+		<div className={styles.itemPicker} style={style}>
 			{items.map((item) => {
 				const isDisabled = disabledItemIds.includes(item.id);
 

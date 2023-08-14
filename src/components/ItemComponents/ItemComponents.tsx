@@ -1,13 +1,14 @@
 import { Sprite } from "../Sprite/Sprite";
 import { Item } from "@/models";
 import styles from "./ItemComponents.module.scss";
+import { useItems } from "@/context/items-context";
 
 export interface ItemComponentsProps {
 	item: Item;
-	items: Item[];
 }
 
-export const ItemComponents = ({ item, items }: ItemComponentsProps) => {
+export const ItemComponents = ({ item }: ItemComponentsProps) => {
+	const items = useItems();
 	const components =
 		(item.requires
 			?.map((itemId) => items.find((i) => i.id === itemId))

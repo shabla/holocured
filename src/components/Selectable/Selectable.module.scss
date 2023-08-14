@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid white;
+  border: 1px solid white;
 
   &:hover {
     background-color: var(--darkerPink);
@@ -30,7 +30,6 @@
   padding: 12px 10px;
   position: relative;
   flex: 1 1 auto;
-  border-bottom: 1px solid #ffffff50;
 
   &:not(.disabled) {
     &:hover {

@@ -1,12 +1,12 @@
-.container {
+.weaponsSection {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 10px;
   width: 100%;
+  gap: 1px;
 }
 
 .emptyMessage {
-  font-size: 12px;
+  font-size: 16px;
   text-align: center;
 }

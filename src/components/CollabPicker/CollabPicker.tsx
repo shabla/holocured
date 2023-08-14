@@ -2,23 +2,27 @@ import { Item } from "@/models";
 import React from "react";
 import { Selectable } from "../Selectable/Selectable";
 import styles from "./CollabPicker.module.scss";
-import { CollabRow } from "../CollabRow/CollabRow";
+import { CollabRow } from "./CollabRow/CollabRow";
 
 export interface CollabPickerProps {
 	disabledWeaponIds: string[];
-	items: Item[];
 	collabs: Item[];
+	emptyMessage?: string;
 	onSelect: (collab: Item) => void;
 }
 
 export const CollabPicker = ({
 	disabledWeaponIds,
-	items,
 	collabs,
+	emptyMessage = "No collabs available",
 	onSelect,
 }: CollabPickerProps) => {
 	return (
-		<div className={styles.container}>
+		<div className={styles.collabPicker}>
+			{collabs.length === 0 && (
+				<div className={styles.emptyMessage}>{emptyMessage}</div>
+			)}
+
 			{collabs.map((collab) => {
 				const disabledWeapons =
 					collab.requires?.filter((itemId) =>
@@ -40,7 +44,6 @@ export const CollabPicker = ({
 						<CollabRow
 							key={collab.id}
 							item={collab}
-							items={items}
 							disabledWeaponIds={disabledWeapons}
 							disabled={isDisabled}
 						/>

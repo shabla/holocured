@@ -1,5 +1,6 @@
 import BuildPage from "@/components/BuildPage/BuildPage";
 import { config } from "@/config";
+import { ItemsContextProvider } from "@/context/items-context";
 import { Item } from "@/models";
 
 async function fetchItems(): Promise<Item[]> {
@@ -22,5 +23,9 @@ async function fetchItems(): Promise<Item[]> {
 export default async function Page() {
 	const items = await fetchItems();
 
-	return <BuildPage items={items} />;
+	return (
+		<ItemsContextProvider items={items}>
+			<BuildPage />
+		</ItemsContextProvider>
+	);
 }

@@ -4,19 +4,19 @@ import { ItemComponents } from "../ItemComponents/ItemComponents";
 import styles from "./WeaponsSection.module.scss";
 
 export interface WeaponsSectionProps {
-	items: Item[];
 	selectedSlot?: number;
 	selectedWeapons: WeaponsList;
 	onSlotSelected: (slotIndex: number | undefined) => void;
 	onChange: (updatedSelection: WeaponsList) => void;
+	onRemove: (slot: number) => void;
 }
 
 export const WeaponsSection = ({
-	items,
 	selectedSlot,
 	selectedWeapons,
 	onSlotSelected,
 	onChange,
+	onRemove,
 }: WeaponsSectionProps): React.ReactElement => {
 	const handleSlotClicked = (index: number) => {
 		onSlotSelected(selectedSlot !== index ? index : undefined);
@@ -25,11 +25,12 @@ export const WeaponsSection = ({
 	const handleClear = (index: number) => {
 		const newSelected = [...selectedWeapons] as WeaponsList;
 		newSelected[index] = undefined;
+		onRemove(index);
 		onChange(newSelected);
 	};
 
 	return (
-		<div className={styles.container}>
+		<div className={styles.weaponsSection}>
 			{selectedWeapons.map((weapon, index) => (
 				<Selectable
 					key={`weapon-slot-${index}`}
@@ -45,7 +46,7 @@ export const WeaponsSection = ({
 					onClear={() => handleClear(index)}
 				>
 					{weapon ? (
-						<ItemComponents items={items} item={weapon} />
+						<ItemComponents item={weapon} />
 					) : (
 						<div className={styles.emptyMessage}>Pick a weapon</div>
 					)}

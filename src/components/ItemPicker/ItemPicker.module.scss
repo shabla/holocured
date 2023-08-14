@@ -1,4 +1,5 @@
-.container {
+.itemPicker {
   display: flex;
   flex-wrap: wrap;
+  gap: var(--itemsGap);
 }
