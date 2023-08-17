@@ -12,6 +12,7 @@ import { getHighlightedCollabs } from "./utils/getHighlightedCollabs";
 import { findFirstEmptySlotIndex } from "./utils/findFirstEmptySlotIndex";
 import { getBasicWeapons } from "./utils/getBasicWeapons";
 import { getDisabledCollabIds } from "./utils/getDisabledCollabIds";
+import { Section } from "./components/Section";
 
 export default function BuildPage() {
 	const items = useItems();
@@ -39,7 +40,7 @@ export default function BuildPage() {
 	};
 
 	const handleCollabSelected = (collab: Item) => {
-		// TODO: when nothing is selected, don't assume we want to use existing basic weapon for clicked collab
+		// TODO: probably need some love here
 
 		const firstItemId = collab.requires?.[0] as string;
 		const secondItemId = collab.requires?.[1] as string;
@@ -64,19 +65,6 @@ export default function BuildPage() {
 
 		const isSelectedSlotRequired =
 			selectedItem && collab.requires?.includes(selectedItem.id);
-
-		// 		console.log(`
-		// firstItemId:            ${firstItemId}
-		// secondItemId:           ${secondItemId}
-		// firstItemIndex:         ${firstItemIndex}
-		// secondItemIndex:        ${secondItemIndex}
-		// isFirstOwned:           ${isFirstOwned}
-		// isSecondOwned:          ${isSecondOwned}
-		// hasSelection:           ${hasSelection}
-		// isSelectedSlotFree:     ${isSelectedSlotFree}
-		// selectedItem:           ${selectedItem?.id}
-		// isSelectedSlotRequired: ${isSelectedSlotRequired}
-		// `);
 
 		const updatedSelectedWeapons = [...selectedWeapons] as WeaponsList;
 		let indexForCollab;
@@ -178,14 +166,5 @@ export default function BuildPage() {
 				</Section>
 			</div>
 		</div>
-	);
-}
-
-function Section({
-	children,
-	className,
-}: { children: React.ReactNode; className?: string }) {
-	return (
-		<div className={classNames(styles.section, className)}>{children}</div>
 	);
 }

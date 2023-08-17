@@ -8,7 +8,7 @@
     "build": "next build",
     "serve": "npx serve@latest out",
     "db": "pocketbase.exe serve",
-    "predeploy": "npm run build && touch out/.nojekyll",
+    "predeploy": "npm run build && touch out/.nojekyll && cp CNAME out/CNAME",
     "deploy": "node ./scripts/publish"
   },
   "dependencies": {
