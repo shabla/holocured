@@ -1,44 +1,65 @@
-.clearButton {
-  all: unset;
-  position: absolute;
-  bottom: 0;
-  left: 20%;
-  width: 60%;
-  height: 35px;
-  transform: translateY(50%);
-  line-height: 20px;
-  background-color: var(--pink);
-  color: white;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid white;
-
-  &:hover {
-    background-color: var(--darkerPink);
-    cursor: pointer;
-  }
-}
-
 .container {
+  --background: rgba(255, 255, 255, 0.1);
+  --backgroundHover: rgba(255, 255, 255, 0.3);
+  --opacity: 1;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.1);
   padding: 12px 10px;
   position: relative;
   flex: 1 1 auto;
+  background-color: var(--background);
+  opacity: var(--opacity);
+
+  &.disabled {
+    --opacity: 0.4;
+    pointer-events: none;
+    user-select: none;
+  }
 
   &:not(.disabled) {
     &:hover {
-      background-color: rgba(255, 255, 255, 0.3);
+      background-color: var(--backgroundHover);
       cursor: pointer;
+    }
+
+    &.highlighted {
+      --background: rgba(0, 255, 0, 0.3);
+
+      &:hover {
+        --backgroundHover: rgba(0, 255, 0, 0.5);
+      }
+    }
+
+    &.selected {
+      outline: 3px solid white;
     }
   }
 
-  &.selected {
-    outline: 3px solid white;
+
+
+  .clearButton {
+    all: unset;
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    width: 60%;
+    height: 35px;
+    transform: translateY(50%);
+    line-height: 20px;
+    background-color: var(--pink);
+    color: white;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+
+    &:hover {
+      background-color: var(--darkerPink);
+      cursor: pointer;
+    }
   }
 }

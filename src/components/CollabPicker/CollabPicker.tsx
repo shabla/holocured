@@ -5,15 +5,17 @@ import styles from "./CollabPicker.module.scss";
 import { CollabRow } from "./CollabRow/CollabRow";
 
 export interface CollabPickerProps {
-	disabledWeaponIds: string[];
 	collabs: Item[];
+	availableCollabs?: Item[];
+	disabledCollabIds: string[];
 	emptyMessage?: string;
 	onSelect: (collab: Item) => void;
 }
 
 export const CollabPicker = ({
-	disabledWeaponIds,
+	disabledCollabIds,
 	collabs,
+	availableCollabs = [],
 	emptyMessage = "No collabs available",
 	onSelect,
 }: CollabPickerProps) => {
@@ -24,29 +26,18 @@ export const CollabPicker = ({
 			)}
 
 			{collabs.map((collab) => {
-				const disabledWeapons =
-					collab.requires?.filter((itemId) =>
-						disabledWeaponIds.includes(itemId),
-					) || [];
-
-				const isDisabled =
-					disabledWeaponIds.includes(collab.id) || disabledWeapons.length > 0;
+				const isDisabled = disabledCollabIds.includes(collab.id);
+				const isAvailable = !!availableCollabs.some((c) => c.id === collab.id);
 
 				return (
 					<Selectable
 						key={collab.id}
 						disabled={isDisabled}
+						highlighted={isAvailable}
 						onClick={() => onSelect(collab)}
-						style={{
-							flex: "1 1 auto",
-						}}
+						style={{ flex: "1 1 auto" }}
 					>
-						<CollabRow
-							key={collab.id}
-							item={collab}
-							disabledWeaponIds={disabledWeapons}
-							disabled={isDisabled}
-						/>
+						<CollabRow key={collab.id} item={collab} disabled={isDisabled} />
 					</Selectable>
 				);
 			})}

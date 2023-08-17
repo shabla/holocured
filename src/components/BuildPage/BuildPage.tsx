@@ -5,90 +5,13 @@ import { CollabPicker } from "@/components/CollabPicker/CollabPicker";
 import { ItemPicker } from "@/components/ItemPicker/ItemPicker";
 import { WeaponsSection } from "@/components/WeaponsSection/WeaponsSection";
 import { Item, WeaponsList } from "@/models";
-import { uniq, without } from "lodash";
 import { useState, useMemo } from "react";
 import styles from "./BuildPage.module.scss";
 import { useItems } from "@/context/items-context";
-
-function collabRequiresItem(collab: Item, item: Item): boolean {
-	return (collab.requires || []).includes(item.id);
-}
-
-const findFirstEmptySlotIndex = (selectedItems: WeaponsList): number => {
-	return selectedItems.findIndex((slot) => slot === undefined);
-};
-
-function getBasicWeapons(items: Item[], selectedItems: Item[]): Item[] {
-	return uniq(
-		(selectedItems.filter((w) => w !== undefined) as Item[]).reduce(
-			(acc, item) => {
-				if (item.type === "weapon") {
-					return [...acc, item];
-				}
-
-				if (item.type === "collab") {
-					return [
-						...acc,
-						...(item.requires || []).map((id) =>
-							items.find((i) => i.id === id),
-						),
-					] as Item[];
-				}
-
-				return acc;
-			},
-			[] as Item[],
-		),
-	);
-}
-
-function getAvailableCollabs(
-	items: Item[],
-	selectedItems: WeaponsList,
-	selectedSlot: number | undefined,
-): Item[] {
-	const ownedItems = selectedItems.filter((w) => w !== undefined) as Item[];
-	const selectedItem =
-		selectedSlot !== undefined ? selectedItems[selectedSlot] : undefined;
-
-	let collabs: Item[] = [];
-
-	if (selectedItem !== undefined) {
-		if (selectedItem.type === "collab") {
-			console.log("selected item is a collab, no availlable collabs");
-			return [];
-		}
-
-		if (selectedItem.type === "weapon") {
-			// only show collabs doable with selected item
-			collabs = items.filter(
-				(i) => i.type === "collab" && i.requires?.includes(selectedItem.id),
-			);
-		}
-	} else {
-		collabs = items.filter((i) => i.type === "collab");
-	}
-
-	const ownedCollabs = ownedItems.filter((i) => i.type === "collab");
-	const basicWeaponsUsedByOwnedCollabs = getBasicWeapons(items, ownedCollabs);
-
-	return collabs.filter((collab) => {
-		// Remove collabs we already own
-		const isAlreadyOwned = ownedItems.find((i) => i.id === collab.id);
-		if (isAlreadyOwned) {
-			return false;
-		}
-
-		// Remove collabs that use basic items already used by another owned collab
-		for (const id of collab.requires || []) {
-			if (basicWeaponsUsedByOwnedCollabs.find((i) => i.id === id)) {
-				return false;
-			}
-		}
-
-		return true;
-	});
-}
+import { getHighlightedCollabs } from "./utils/getHighlightedCollabs";
+import { findFirstEmptySlotIndex } from "./utils/findFirstEmptySlotIndex";
+import { getBasicWeapons } from "./utils/getBasicWeapons";
+import { getDisabledCollabIds } from "./utils/getDisabledCollabIds";
 
 export default function BuildPage() {
 	const items = useItems();
@@ -102,12 +25,10 @@ export default function BuildPage() {
 	]);
 
 	const handleBasicWeaponSelected = (item: Item) => {
-		let indexToReplace = selectedSlot;
-
-		// no slot selected, find first empty slot
-		if (indexToReplace === undefined) {
-			indexToReplace = findFirstEmptySlotIndex(selectedWeapons);
-		}
+		const indexToReplace =
+			selectedSlot === undefined
+				? findFirstEmptySlotIndex(selectedWeapons)
+				: selectedSlot;
 
 		if (indexToReplace !== undefined) {
 			const updatedWeapons = [...selectedWeapons] as WeaponsList;
@@ -210,16 +131,21 @@ export default function BuildPage() {
 	};
 
 	const basicWeapons = items?.filter((item) => item.type === "weapon");
-	const allCollabs = items.filter((item) => item.type === "collab");
+	const collabs = items?.filter((item) => item.type === "collab");
 
 	const disabledBasicWeaponIds = getBasicWeapons(
-		items,
 		selectedWeapons.filter((w) => w !== undefined) as Item[],
-	).map((i) => i.id);
+	);
 
-	const availableCollabs = useMemo(() => {
-		return getAvailableCollabs(items, selectedWeapons, selectedSlot);
-	}, [items, selectedWeapons, selectedSlot]);
+	const availableCollabs = useMemo(
+		() => getHighlightedCollabs(items, selectedWeapons),
+		[items, selectedWeapons],
+	);
+
+	const disabledCollabIds = useMemo(
+		() => getDisabledCollabIds(items, selectedWeapons),
+		[items, selectedWeapons],
+	);
 
 	return (
 		<div className={styles.buildPage}>
@@ -241,20 +167,12 @@ export default function BuildPage() {
 					/>
 				</Section>
 
-				<Section className={styles.allCollabs}>
+				<Section className={styles.collabs}>
 					<h2>Collabs</h2>
 					<CollabPicker
-						collabs={allCollabs}
-						disabledWeaponIds={[]}
-						onSelect={handleCollabSelected}
-					/>
-				</Section>
-
-				<Section className={styles.availableCollabs}>
-					<h2>Available Collabs</h2>
-					<CollabPicker
-						collabs={availableCollabs}
-						disabledWeaponIds={[]}
+						collabs={collabs}
+						availableCollabs={availableCollabs}
+						disabledCollabIds={disabledCollabIds}
 						onSelect={handleCollabSelected}
 					/>
 				</Section>

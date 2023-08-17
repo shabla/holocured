@@ -7,6 +7,7 @@ export interface SelectableProps {
 	clearable?: boolean;
 	disabled?: boolean;
 	selected?: boolean;
+	highlighted?: boolean;
 	style?: React.CSSProperties;
 	onClick?: () => void;
 	onClear?: () => void;
@@ -17,6 +18,7 @@ export const Selectable = ({
 	clearable = false,
 	disabled = false,
 	selected = false,
+	highlighted = false,
 	style,
 	onClick,
 	onClear,
@@ -26,6 +28,7 @@ export const Selectable = ({
 			className={classNames(styles.container, {
 				[styles.disabled]: disabled,
 				[styles.selected]: selected,
+				[styles.highlighted]: highlighted,
 			})}
 			onClick={disabled ? undefined : onClick}
 			style={style}

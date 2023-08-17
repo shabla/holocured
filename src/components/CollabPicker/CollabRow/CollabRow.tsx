@@ -22,11 +22,11 @@ export const CollabRow = ({
 		return null;
 	}
 
-	const firstItem = items.find((i) => i.id === item.requires![0])!;
-	const secondItem = items.find((i) => i.id === item.requires![1])!;
+	const firstItem = items.find((i) => i.id === item.requires?.[0]);
+	const secondItem = items.find((i) => i.id === item.requires?.[1]);
 
-	const isFirstItemDisabled = disabledWeaponIds.includes(firstItem.id);
-	const isSecondItemDisabled = disabledWeaponIds.includes(secondItem.id);
+	const isFirstItemDisabled = disabledWeaponIds.includes(firstItem?.id || "");
+	const isSecondItemDisabled = disabledWeaponIds.includes(secondItem?.id || "");
 
 	return (
 		<div className={styles.container}>
