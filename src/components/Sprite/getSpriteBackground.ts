@@ -2,17 +2,15 @@ import { SpriteSheet } from "@/config/SpriteSheet";
 
 export const getSpriteBackground = (
   spriteSheet: SpriteSheet,
-  name?: string,
+  offsets: [number, number],
 ): string => {
-  if (name) {
-    const offset = spriteSheet.offsets[name];
+  const [xOffset, yOffset] = offsets;
 
-    if (offset) {
-      const x = -(offset[0] || 0) * spriteSheet.width;
-      const y = -(offset[1] || 0) * spriteSheet.height;
+  if (!isNaN(xOffset) && !isNaN(yOffset)) {
+    const x = -xOffset * spriteSheet.width;
+    const y = -yOffset * spriteSheet.height;
 
-      return `url(${spriteSheet.file.src}) ${x}px ${y}px`;
-    }
+    return `url(${spriteSheet.file.src}) ${x}px ${y}px`;
   }
 
   return `url(https://via.placeholder.com/${spriteSheet.width}x${spriteSheet.height}.png?text=???)`;

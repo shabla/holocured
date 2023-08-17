@@ -23,7 +23,6 @@ function loadConfig(rawConfig: RawConfig): Config {
 
     acc[spriteSheet.type] = {
       ...spritesheet,
-      offsets: spritesheet.offsets || {},
       file: spriteSheet.file
     } as SpriteSheet;
 

@@ -37,7 +37,7 @@ export const CollabPicker = ({
 						onClick={() => onSelect(collab)}
 						style={{ flex: "1 1 auto" }}
 					>
-						<CollabRow key={collab.id} item={collab} disabled={isDisabled} />
+						<CollabRow key={collab.id} collab={collab} disabled={isDisabled} />
 					</Selectable>
 				);
 			})}

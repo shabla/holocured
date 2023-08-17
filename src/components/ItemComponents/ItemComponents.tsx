@@ -16,7 +16,12 @@ export const ItemComponents = ({ item }: ItemComponentsProps) => {
 
 	return (
 		<div className={styles.collabContainer}>
-			<Sprite type="items" name={item.name} label={item.name} showBackground />
+			<Sprite
+				type="items"
+				offsets={item.offsets}
+				label={item.name}
+				showBackground
+			/>
 
 			{components.length > 0 && (
 				<>
@@ -27,7 +32,7 @@ export const ItemComponents = ({ item }: ItemComponentsProps) => {
 							<Sprite
 								key={item.id}
 								type="items"
-								name={item.name}
+								offsets={item.offsets}
 								label={item.name}
 								showBackground
 							/>

@@ -30,7 +30,7 @@ export const ItemPicker = ({
 					>
 						<Sprite
 							type="items"
-							name={item.name}
+							offsets={item.offsets}
 							disabled={isDisabled}
 							showBackground
 							label={item.name}

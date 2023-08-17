@@ -9,7 +9,6 @@ import { SpriteType } from "./SpriteType";
 export type SpriteSheetConfig = {
   width: number;
   height: number;
-  offsets?: Record<string, number[]>;
   file?: StaticImageData;
 };
 

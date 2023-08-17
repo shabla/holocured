@@ -7,32 +7,35 @@ import { useItems } from "@/context/items-context";
 export interface CollabRowProps {
 	disabledWeaponIds?: string[];
 	disabled?: boolean;
-	item: Item;
+	collab: Item;
 }
 
 export const CollabRow = ({
 	disabled,
 	disabledWeaponIds = [],
-	item,
+	collab,
 }: CollabRowProps) => {
 	const items = useItems();
 
-	if (!item.requires) {
-		console.error(`Item "${item.name}" doesn't have any required items`, item);
+	if (!collab.requires) {
+		console.error(
+			`Item "${collab.name}" doesn't have any required items`,
+			collab,
+		);
 		return null;
 	}
 
-	const firstItem = items.find((i) => i.id === item.requires?.[0]);
-	const secondItem = items.find((i) => i.id === item.requires?.[1]);
-
-	const isFirstItemDisabled = disabledWeaponIds.includes(firstItem?.id || "");
-	const isSecondItemDisabled = disabledWeaponIds.includes(secondItem?.id || "");
+	const [firstItemId, secondItemId] = collab.requires;
+	const firstItem = items.find((i) => i.id === firstItemId);
+	const secondItem = items.find((i) => i.id === secondItemId);
+	const isFirstItemDisabled = disabledWeaponIds.includes(firstItemId);
+	const isSecondItemDisabled = disabledWeaponIds.includes(secondItemId);
 
 	return (
 		<div className={styles.container}>
 			<Sprite
 				type="items"
-				name={firstItem?.name}
+				offsets={firstItem?.offsets}
 				label={firstItem?.name}
 				showBackground
 				disabled={isFirstItemDisabled}
@@ -42,7 +45,7 @@ export const CollabRow = ({
 
 			<Sprite
 				type="items"
-				name={secondItem?.name}
+				offsets={secondItem?.offsets}
 				label={secondItem?.name}
 				showBackground
 				disabled={isSecondItemDisabled}
@@ -52,8 +55,8 @@ export const CollabRow = ({
 
 			<Sprite
 				type="items"
-				name={item.name}
-				label={item.name}
+				offsets={collab.offsets}
+				label={collab.name}
 				showBackground
 				disabled={disabled}
 			/>

@@ -5,7 +5,7 @@ import { SpriteType, config } from "@/config";
 
 export interface SpriteProps<T = unknown> {
 	type: SpriteType;
-	name?: string;
+	offsets?: [number, number];
 	selected?: boolean;
 	showBackground?: boolean;
 	disabled?: boolean;
@@ -19,7 +19,7 @@ export interface SpriteProps<T = unknown> {
 
 export const Sprite = <T,>({
 	type,
-	name,
+	offsets = [NaN, NaN],
 	label,
 	showBackground = false,
 	scale = 1,
@@ -55,7 +55,7 @@ export const Sprite = <T,>({
 		width: `${width}px`,
 		height: `${height}px`,
 		transform: `scale(${scale})`,
-		background: `${getSpriteBackground(spriteSheet, name)}${
+		background: `${getSpriteBackground(spriteSheet, offsets)}${
 			showBackground ? ", rgba(0, 0, 0, 0.1)" : ""
 		}`,
 	};
